@@ -30,19 +30,19 @@ class Advisor():
                  model: str = 'gpt-3.5-turbo',
                  max_token_num: int = 3000) -> None:
         openai.api_key = api_key
-        self.msg = [{'role': 'system', 'content': system_content}]
+        self.msg_list = [{'role': 'system', 'content': system_content}]
         self.model = model
         self.max_token_num = max_token_num
 
     def advise(self, prompt: str) -> str:
-        self.msg.append({'role': 'user', 'content': prompt})
+        self.msg_list.append({'role': 'user', 'content': prompt})
         res = openai.ChatCompletion.create(model=self.model,
-                                           messages=self.msg,
+                                           messages=self.msg_list,
                                            temperature=0)
         ans = res['choices'][0]['message']['content'].strip()
-        self.msg.append({'role': 'assistant', 'content': ans})
+        self.msg_list.append({'role': 'assistant', 'content': ans})
         if res['usage']['total_tokens'] > self.max_token_num:
-            self.msg.pop(1)
+            self.msg_list.pop(1)
         return ans
 
 

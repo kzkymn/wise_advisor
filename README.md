@@ -6,7 +6,7 @@
 
 Wise Respondent is an application designed to generate fitting responses to voice-based questions.
 
-![main_image](img/main_image.png)
+![main_image](img/main_image_chat.png)
 
 The application responds to questions according to situational descriptions provided in a JSON format configuration file. For instance, the `config.json` file in this repository contains the following description:
 
